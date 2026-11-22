@@ -1,0 +1,35 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+int main() {
+
+    ifstream file("biofluid_flow.csv");
+
+    if (!file.is_open()) {
+        cout << "Unable to open file";
+        return 1;
+    }
+
+    string line;
+
+    getline(file, line); // Skip header
+
+    while (getline(file, line)) {
+
+        stringstream ss(line);
+        string value;
+
+        while (getline(ss, value, ',')) {
+            cout << value << " ";
+        }
+
+        cout << endl;
+    }
+
+    file.close();
+
+    return 0;
+}
